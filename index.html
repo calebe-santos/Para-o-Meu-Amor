@@ -124,8 +124,7 @@ footer{text-align:center;padding:28px;color:#9d8b91;border-top:1px solid var(--l
     <button class="arrow" id="next" aria-label="Próxima foto">›</button>
   </div>
   <div class="dots" id="dots" aria-label="Selecionar foto"></div>
-  <div style="text-align:center"><label class="btn secondary" for="photoFiles" style="display:inline-block;cursor:pointer">＋ Adicionar fotos</label><input id="photoFiles" type="file" accept="image/*" multiple hidden></div>
-  <p class="small-note">As fotos escolhidas aqui ficam no navegador enquanto você prepara o site. Para publicá-las para a Mariana, coloque os arquivos na pasta <code>fotos</code> e siga o guia incluído.</p>
+  <p class="small-note">Cada momento ao teu lado é único, Mariana. ❤️</p>
 </section>
 
 <section class="section universe" id="universo">
@@ -155,7 +154,6 @@ Obrigado por ser você e por fazer parte da minha vida.
 Com todo o meu carinho,</p>
     <p class="signature">Calebe ♥</p>
   </article></div>
-  <p class="small-note" style="margin-top:24px">Dica: personalize essa carta no arquivo <code>index.html</code> antes de publicar.</p>
 </section>
 
 <section class="section proposal" id="pedido">
@@ -203,11 +201,23 @@ const placeholderCaptions = [
   "“Se eu pudesse, reviveria esse dia.”",
   "“Você deixa tudo mais bonito.”"
 ];
-let slides = [], current = 0;
+
+// Fotos carregadas da pasta fotos/
+let slides = [
+  { url: "fotos/fotos1.jpg", caption: "“A MINHA PRINCESA.”" },
+  { url: "fotos/fotos2.jpg", caption: "“O MEU AMOR.”" },
+  { url: "fotos/fotos3.jpg", caption: "“A MINHA FUTURA ESPOSA.”" },
+  { url: "fotos/fotos4.jpg", caption: "“A MINHA MULHER.”" },
+  { url: "fotos/fotos5.jpg", caption: "“A MINHA NAMORADA.”" },
+  { url: "fotos/fotos6.jpg", caption: "“O melhor da minha vida é você.”" }
+];
+let current = 0;
+
 const image = document.getElementById('slideImage');
 const ph = document.getElementById('photoPlaceholder');
 const caption = document.getElementById('caption');
 const dots = document.getElementById('dots');
+
 function render(){
   if(!slides.length){image.style.display='none';ph.style.display='grid';caption.textContent=placeholderCaptions[0];dots.innerHTML='';return;}
   current=(current+slides.length)%slides.length;
@@ -218,15 +228,11 @@ function render(){
 }
 document.getElementById('prev').onclick=()=>{if(slides.length){current--;render()}};
 document.getElementById('next').onclick=()=>{if(slides.length){current++;render()}};
-document.getElementById('photoFiles').addEventListener('change',e=>{
-  const files=Array.from(e.target.files||[]).filter(f=>f.type.startsWith('image/'));
-  files.forEach(file=>slides.push({url:URL.createObjectURL(file),caption:file.name.replace(/\.[^.]+$/,'').replace(/[_-]/g,' ')}));
-  current=slides.length-files.length;render();
-});
+
 const audio=document.getElementById('audio'), musicFile=document.getElementById('musicFile'), musicToggle=document.getElementById('musicToggle');
 musicToggle.onclick=()=>{if(!audio.src){musicFile.click();return;}if(audio.paused){audio.play().then(()=>musicToggle.textContent='♫ Pausar').catch(()=>musicFile.click())}else{audio.pause();musicToggle.textContent='♫ Música'}};
 musicFile.addEventListener('change',e=>{const file=e.target.files[0];if(file){audio.src=URL.createObjectURL(file);audio.play().then(()=>musicToggle.textContent='♫ Pausar').catch(()=>musicToggle.textContent='♫ Tocar')}});
-document.getElementById('revealBtn').onclick=()=>{const el=document.getElementById('customRequest');el.classList.toggle('hidden');document.getElementById('revealBtn').textContent=el.classList.contains('hidden')?'Ler meu pedido especial':'Fechar meu pedido';if(!el.classList.contains('hidden'))el.scrollIntoView({behavior:'smooth',block:'center'})};
+
 // Interações do pedido personalizado: botão "Não" foge e "Sim" revela a declaração.
 const pedidoCard = document.getElementById('pedidoCard');
 const btnNao = document.getElementById('btnNao');
@@ -271,6 +277,7 @@ revealBtn.addEventListener('click', () => {
     customRequest.scrollIntoView({behavior:'smooth', block:'center'});
   }
 });
+
 render();
 </script>
 </body>
