@@ -39,7 +39,7 @@ h1,h2,h3,p{margin-top:0}h1{font-size:clamp(2.8rem,7vw,6rem);line-height:1.02;mar
 .arrow{width:46px;height:46px;border-radius:50%;border:1px solid #ffffff55;background:#171016;color:white;font-size:1.4rem}.arrow:hover{border-color:var(--red);color:var(--red)}
 .photo-card{max-width:760px;width:100%;padding:16px 16px 20px;background:#fff5f0;color:#20151a;box-shadow:0 15px 55px #0008;transform:rotate(-.6deg);text-align:center}
 .photo-frame{height:clamp(230px,42vw,430px);background:linear-gradient(135deg,#23131b,#3d1421);display:grid;place-items:center;position:relative;overflow:hidden}
-.photo-frame img{width:100%;height:100%;object-fit:cover;display:none}
+.photo-frame img{width:100%;height:100%;object-fit:contain;display:none}
 .photo-placeholder{padding:24px;color:#f5cbd1;text-align:center}
 .photo-placeholder strong{display:block;font-size:3rem;color:#ff6178}
 .photo-caption{padding-top:13px;font-style:italic;font-size:1.1rem}
@@ -86,7 +86,6 @@ footer{text-align:center;padding:28px;color:#9d8b91;border-top:1px solid var(--l
 @keyframes pulsarPedido{50%{transform:scale(1.12)}}
 @keyframes aparecerPedido{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:480px){.pedido-card{padding:28px 18px}.botoes-pedido{gap:12px;flex-wrap:wrap}.botoes-pedido button{padding:13px 22px}}
-
 </style>
 </head>
 <body>
